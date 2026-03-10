@@ -1,70 +1,126 @@
-# Getting Started with Create React App
+# Serverless Cloud Dictionary Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A serverless web application that allows users to search and retrieve cloud computing terminology.  
+The project demonstrates how a frontend application can interact with a serverless backend using AWS services.
 
-## Available Scripts
+The application uses a REST API to retrieve definitions stored in a NoSQL database, showcasing a scalable and cost-efficient architecture.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Architecture Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The application uses a fully serverless architecture, with the frontend communicating with backend services via an API.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Key AWS services used:
 
-### `npm test`
+- AWS Amplify – Hosts the React frontend application
+- Amazon API Gateway – Provides REST API endpoints
+- AWS Lambda – Processes API requests
+- Amazon DynamoDB – Stores cloud terms and definitions
+- IAM Roles & Policies – Secures service access
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Architecture Diagram
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<p align="center">
+  <img src="https://i.gyazo.com/496518a98c9b47b98abf431c21cd230c.png" alt="Diagram" width="700">
+  <br>
+  <sub>Figure 1: Architecture Diagram</sub>
+</p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Workflow
 
-### `npm run eject`
+```text
+User searches for cloud term
+        ↓
+Frontend hosted on Amplify
+        ↓
+Request sent to API Gateway
+        ↓
+API Gateway invokes Lambda function
+        ↓
+Lambda queries DynamoDB
+        ↓
+Definition returned to frontend
+        ↓
+Result displayed to the user
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Key AWS Configuration
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Example infrastructure configurations used in the project.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<p align="center">
+  <img src="https://i.gyazo.com/32dc03afd78b6bc6089eb4e2d4493f4e.png" alt="" width="700">
+  <img src="https://i.gyazo.com/b0ee9d0d832067c32102f560205e6c4b.png" alt="API Gateway Endpoint" width="700">
+  <br>
+  <sub>Figure 2: API Gateway Endpoint</sub>
+</p>
 
-## Learn More
+<p align="center">
+  <img src="https://i.gyazo.com/d6ebe4f8856bb4e6db56399f422cbf1c.png" alt="DynamoDB Table" width="700">
+  <br>
+  <sub>Figure 3: DynamoDB Table</sub>
+</p>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Application Interface
 
-### Code Splitting
+Example of the dictionary search interface and returned definition.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<p align="center">
+  <img src="https://i.gyazo.com/af1fdb2dbefa0f128a1ee88409170f44.png" alt="Dictionary Search UI" width="700">
+  <br>
+  <sub>Figure 4: Dictionary Search UI</sub>
+</p>
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Future Improvements
 
-### Making a Progressive Web App
+- Allow users to submit new terms
+- Implement caching for faster lookups
+- Add authentication for user contributions
+- Expand the dictionary dataset
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Local Development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+This frontend application was bootstrapped using Create React App.
 
-### Deployment
+Install dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+npm install
+```
 
-### `npm run build` fails to minify
+Start the development server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+npm start
+```
+
+The application will run at:
+
+```
+http://localhost:3000
+```
+
+Build the production version:
+
+```bash
+npm run build
+```
+
+---
+
+## Deployment
+
+The application is deployed using AWS Amplify for frontend hosting and continuous deployment.
